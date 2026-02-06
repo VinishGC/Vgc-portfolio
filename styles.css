@@ -1,23 +1,55 @@
 /* Base Styles */
 
-
+/* ===== Horizontal Scroll Cards ===== */
 
 .cards {
   display: flex;
-  gap: 20px;          /* spacing between cards */
-  flex-wrap: wrap;     /* allows wrapping on small screens */
-  justify-content: center;
+  gap: 20px;
   padding: 20px;
+
+  overflow-x: auto;          /* horizontal scroll */
+  overflow-y: hidden;
+  flex-wrap: nowrap;
+
+  scroll-behavior: smooth;
+  scroll-snap-type: x mandatory;
 }
 
-.card {
-  width: 250px;
-  background: #fff;
-  border-radius: 12px;
-  overflow: hidden;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-  transition: 0.3s ease;
+/* scrollbar styling */
+.cards::-webkit-scrollbar {
+  height: 8px;
 }
+
+.cards::-webkit-scrollbar-thumb {
+  background: #6c63ff;
+  border-radius: 10px;
+}
+
+.cards::-webkit-scrollbar-track {
+  background: #eee;
+}
+
+/* ===== Card ===== */
+
+.card {
+  min-width: 300px;          /* key for scrolling */
+  background: #ffffff;
+  border-radius: 15px;
+  overflow: hidden;
+
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+  flex-shrink: 0;            /* prevents shrinking */
+
+  scroll-snap-align: start;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+}
+
+/* ===== Card Image ===== */
 
 .card img {
   width: 100%;
@@ -25,49 +57,14 @@
   object-fit: cover;
 }
 
-.card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
-}
+/* ===== Card Content ===== */
 
 .card h3 {
   padding: 15px;
+  margin: 0;
+  font-size: 18px;
 }
 
-.cards-container {
-  display: flex;
-  gap: 20px;
-  overflow-x: auto;        /* 🔥 enables horizontal scroll */
-  padding: 20px;
-  scroll-behavior: smooth;
-}
-
-.cards-container::-webkit-scrollbar {
-  height: 8px;
-}
-
-.cards-container::-webkit-scrollbar-thumb {
-  background: #6c63ff;
-  border-radius: 10px;
-}
-
-.card {
-  min-width: 300px;        /* IMPORTANT */
-  background: #fff;
-  border-radius: 15px;
-  padding: 10px;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
-  flex-shrink: 0;          /* 🔥 prevents shrinking */
-}
-
-
-.cards-container {
-  scroll-snap-type: x mandatory;
-}
-
-.card {
-  scroll-snap-align: start;
-}
 
 
 :root {
@@ -1549,4 +1546,5 @@ footer {
     padding: 20px;
 
 }
+
 
